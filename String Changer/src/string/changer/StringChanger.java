@@ -8,6 +8,8 @@ package string.changer;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,7 +22,7 @@ import javax.swing.JTextField;
  *
  * @author ldcha
  */
-public class StringChanger {
+public class StringChanger extends JFrame {
 
     // create main JFrame
     private static JFrame mainFrame;
@@ -140,10 +142,112 @@ public class StringChanger {
             sortedText.setText("Yo I need some input please");
         } else {
             String originalInput = originalText.getText().trim();
-            char originalArray[]= originalInput.toCharArray();
-                
-            for(int i=0; i<originalArray.length;i++){
-                System.out.println(originalArray[i]);
+            char originalArray[] = originalInput.toCharArray();
+
+            if (consonantRadioButton.isSelected()) {
+                ArrayList<Character> conList = new ArrayList<>();
+                conList.add('b');
+                conList.add('c');
+                conList.add('d');
+                conList.add('f');
+                conList.add('g');
+                conList.add('h');
+                conList.add('j');
+                conList.add('k');
+                conList.add('l');
+                conList.add('m');
+                conList.add('n');
+                conList.add('p');
+                conList.add('q');
+                conList.add('r');
+                conList.add('s');
+                conList.add('t');
+                conList.add('v');
+                conList.add('w');
+                conList.add('x');
+                conList.add('z');
+                conList.add('B');
+                conList.add('C');
+                conList.add('D');
+                conList.add('F');
+                conList.add('G');
+                conList.add('H');
+                conList.add('J');
+                conList.add('K');
+                conList.add('L');
+                conList.add('M');
+                conList.add('N');
+                conList.add('P');
+                conList.add('Q');
+                conList.add('R');
+                conList.add('S');
+                conList.add('T');
+                conList.add('V');
+                conList.add('W');
+                conList.add('X');
+                conList.add('Z');
+
+                int i = 0;
+                int j = originalArray.length - 1;
+                while (i < j) {
+                    if (!conList.contains(originalArray[i])) {
+                        i++;
+                        continue;
+                    }
+                    if (!conList.contains(originalArray[j])) {
+                        j--;
+                        continue;
+                    }
+                    char t = originalArray[i];
+                    originalArray[i] = originalArray[j];
+                    originalArray[j] = t;
+                    i++;
+                    j--;
+                }
+                String resultString = Arrays.toString(originalArray);
+                resultString = resultString.substring(1, resultString.length() - 1).replace(","," ");
+                sortedText.setText(resultString);
+
+            }
+
+            if (vowelRadioButton.isSelected()) {
+                ArrayList<Character> vowList = new ArrayList<>();
+                vowList.add('a');
+                vowList.add('e');
+                vowList.add('i');
+                vowList.add('o');
+                vowList.add('u');
+                vowList.add('A');
+                vowList.add('E');
+                vowList.add('I');
+                vowList.add('O');
+                vowList.add('U');
+
+                int i = 0;
+                int j = originalArray.length - 1;
+
+                while (i < j) {
+                    if (!vowList.contains(originalArray[i])) {
+                        i++;
+                        continue;
+                    }
+
+                    if (!vowList.contains(originalArray[j])) {
+                        j--;
+                        continue;
+                    }
+
+                    char t = originalArray[i];
+                    originalArray[i] = originalArray[j];
+                    originalArray[j] = t;
+
+                    i++;
+                    j--;
+                }
+                String resultString = Arrays.toString(originalArray);
+               resultString = resultString.substring(1, resultString.length() - 1).replace("," ,"");
+                sortedText.setText(resultString);
+
             }
         }
     }
